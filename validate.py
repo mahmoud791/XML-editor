@@ -16,6 +16,15 @@ def validate(s):
         for i in range(len(line)):
             if (line[i]=='<'):
                 if(line[i+1] != '!' or line[i+1] != '?'):
+                    j = i+1
+                    tag = ''
+                    while(line[j] != ' '):
+                        tag += line[j]
+                        j = j+1
+
+                    mystack.push(tag)
+                    
+
 
 
 
