@@ -53,3 +53,11 @@ class Stack:
       self.head.next = self.head.next.next
       self.size -= 1
       return remove.value
+
+
+   def top(self):
+        if self.isEmpty():
+            raise Exception("Popping from an empty stack")
+        return self.head
+        
+

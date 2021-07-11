@@ -41,7 +41,4 @@ compress_Button.grid(row=5,column=1)
 
 
 
-
-
-
 window.mainloop()
