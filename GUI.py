@@ -1,4 +1,5 @@
 from validate import validate
+from Convert import*
 from tkinter import*
 
 
@@ -6,6 +7,11 @@ from tkinter import*
 def check_consistency():
     path = pathentry.get()
     validate(s=path)
+
+def Convert_to_JSON():
+    path = pathentry.get()
+    convert(s=path)
+
 
 
 
@@ -28,7 +34,7 @@ prettify_Button = Button(window, text='Prettify',width=15)
 prettify_Button.grid(row=2,column=1)
 
 
-Convert_to_JSON = Button(window, text='convert to JSON',width=15)
+Convert_to_JSON = Button(window, text='convert to JSON',width=15,command=Convert_to_JSON)
 Convert_to_JSON.grid(row=3,column=1)
 
 minify_Button = Button(window, text='Minify',width=15)
