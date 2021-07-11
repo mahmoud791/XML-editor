@@ -1,4 +1,12 @@
+from validate import validate
 from tkinter import*
+
+
+
+def check_consistency():
+    path = pathentry.get()
+    validate(s=path)
+
 
 
 window = Tk()
@@ -12,7 +20,7 @@ lbl.grid(column=0, row=0)
 pathentry = Entry(window,width=30)
 pathentry.grid(row=0,column=1)
 
-validate_button = Button(window, text='check consistensy',width=15)
+validate_button = Button(window, text='check consistensy',width=15,command=check_consistency)
 validate_button.grid(row=1,column=1)
 
 
@@ -28,6 +36,7 @@ minify_Button.grid(row=4,column=1)
 
 compress_Button = Button(window, text='Compress',width=15)
 compress_Button.grid(row=5,column=1)
+
 
 
 
