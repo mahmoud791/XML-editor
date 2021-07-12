@@ -1,6 +1,8 @@
+from os import path
 from validate import validate
 from Convert import*
 from tkinter import*
+from formate import*
 
 
 
@@ -12,6 +14,9 @@ def Convert_to_JSON():
     path = pathentry.get()
     convert(s=path)
 
+def prettify():
+    path = pathentry.get()
+    formate(s=path)
 
 
 
@@ -30,7 +35,7 @@ validate_button = Button(window, text='check consistensy',width=15,command=check
 validate_button.grid(row=1,column=1)
 
 
-prettify_Button = Button(window, text='Prettify',width=15)
+prettify_Button = Button(window, text='Prettify',width=15,command=prettify)
 prettify_Button.grid(row=2,column=1)
 
 

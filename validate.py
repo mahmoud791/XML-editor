@@ -14,7 +14,7 @@ def validate(s):
     for line in file:
         for i in range(len(line)-1):
             if (line[i]=='<'):
-                if(line[i+1] != '/'):
+                if(line[i+1] != '/' and line[i+1] != '!' and line[i+1] != '?' ):
                     j = i+1
                     tag = ''
                     while((line[j] != " " and line[j] != ">") and (j < len(line)-1)):
@@ -32,7 +32,10 @@ def validate(s):
                         j = j+1
                     
                     if(mystack.pop() != tag):
-                        print("error in line "+str(line_No))
+                        print("error in line "+str(line_No)+" the closing tag '"+str(tag)+"' doesnt match it opening")
+            
+            if(line[i]=='>' and line[i-1]=='/'):
+                x=mystack.pop()
 
         line_No = line_No + 1
 
