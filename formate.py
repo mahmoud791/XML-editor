@@ -18,7 +18,11 @@ def formate(s):
 
     file = open(path, "r")
     file = file.readlines()
-    formatted_file = open("formatted.txt", "x")
+    try:
+        formatted_file = open("formatted.txt", "x")
+    except FileExistsError:
+        return
+    
     current_spaces = 0
     
     i = 0
