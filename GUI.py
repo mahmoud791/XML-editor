@@ -3,51 +3,78 @@ from validate import validate
 from Convert import*
 from tkinter import*
 from formate import*
+from Minify import*
 
 
 
-def check_consistency():
+def check_consistency(outText):
+    outText.delete('1.0',END)
     path = pathentry.get()
-    validate(s=path)
+    output = validate(s=path)
+    if(len(output)):
+        for i in range(len(output)):
+            outText.insert(END,output[i]+'\n')
+    else:
+        outText.insert(END,'this file has no errors')
+
+    
+        
+
+
 
 def Convert_to_JSON():
     path = pathentry.get()
     convert(s=path)
 
-def prettify():
+def prettify(outText):
+    outText.delete('1.0',END)
     path = pathentry.get()
+    outText.insert(END,' "Formatted.txt" is being created .... \n')
     formate(s=path)
+    outText.insert(END,' "Formatted.txt" is  created successfully \n')
+
+def Minify(outText):
+    outText.delete('1.0',END)
+    path = pathentry.get()
+    outText.insert(END,' "Minified.txt" is being created .... \n')
+    reduce(s=path)
+    outText.insert(END,' "Minified.txt" is  created successfully \n')
+
 
 
 
 window = Tk()
 
 window.title("XML Editor")
-window.geometry('250x300')
+window.geometry('800x600')
 
-lbl = Label(window, text="Path: ")
+
+
+lbl = Label(window, text="Path:")
 lbl.grid(column=0, row=0)
 
-pathentry = Entry(window,width=30)
+pathentry = Entry(window,width=100)
 pathentry.grid(row=0,column=1)
 
-validate_button = Button(window, text='check consistensy',width=15,command=check_consistency)
-validate_button.grid(row=1,column=1)
+validate_button = Button(window, text='Validate',width=10,command= lambda : check_consistency(outText=outText))
+validate_button.grid(row=1,column=2)
 
 
-prettify_Button = Button(window, text='Prettify',width=15,command=prettify)
-prettify_Button.grid(row=2,column=1)
+prettify_Button = Button(window, text='Prettify',width=10,command=lambda : prettify(outText=outText))
+prettify_Button.grid(row=2,column=2)
 
 
-Convert_to_JSON = Button(window, text='convert to JSON',width=15,command=Convert_to_JSON)
-Convert_to_JSON.grid(row=3,column=1)
+Convert_to_JSON = Button(window, text='JSON',width=10,command=Convert_to_JSON)
+Convert_to_JSON.grid(row=3,column=2)
 
-minify_Button = Button(window, text='Minify',width=15)
-minify_Button.grid(row=4,column=1)
+minify_Button = Button(window, text='Minify',width=10,command=lambda : Minify(outText=outText))
+minify_Button.grid(row=4,column=2)
 
-compress_Button = Button(window, text='Compress',width=15)
-compress_Button.grid(row=5,column=1)
+compress_Button = Button(window, text='Compress',width=10)
+compress_Button.grid(row=5,column=2)
 
+outText = Text(master=window)
+outText.grid(row=7,column=1)
 
 
 

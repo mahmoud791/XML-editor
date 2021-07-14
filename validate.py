@@ -3,6 +3,7 @@ from stack import*
 def validate(s):
 
     mystack = []
+    output = []
 
     s = s.replace('\\', '/')
     path = str(s)
@@ -32,7 +33,7 @@ def validate(s):
                         j = j+1
                     
                     if(mystack.pop() != tag):
-                        print("error in line "+str(line_No)+" the closing tag '"+str(tag)+"' doesnt match it opening")
+                        output.append("error in line "+str(line_No)+" the closing tag '"+str(tag)+"' doesnt match it opening")
             
             if(line[i]=='>' and line[i-1]=='/'):
                 x=mystack.pop()
@@ -48,6 +49,7 @@ def validate(s):
 
     
     file.close()
+    return output
             
 
 

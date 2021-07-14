@@ -24,9 +24,10 @@ def formate(s):
         return
     
     current_spaces = 0
+    #formatted_file.write('<?')
     
     i = 0
-    while(i < len(file)-1):
+    while(i < len(file)):
         
         j = 0
         while(j < len(file[i])-1):
@@ -49,8 +50,26 @@ def formate(s):
                     formatted_file.write(printed_line)
                     formatted_file.write("\n")
                     current_spaces += 3
+                    if(file[i][j-1] == '/'):current_spaces -= 3
                 
                 elif (file[i][j]=='/'):
+                    new_line = ""
+                    while( file[i][j] != '>'):
+                        #if(j >= len(file[i])-2):
+                        #    new_line += file[i][j]+file[i][j+1]
+                        #    j = 0
+                        #    i += 1
+                        #else:
+                        new_line += file[i][j]
+                        j +=1
+
+                    current_spaces -= 3   
+                    shift = shift_amount(current_spaces)
+                    printed_line = shift +"<"+new_line+">"
+                    formatted_file.write(printed_line)
+                    formatted_file.write("\n")
+
+                else:
                     new_line = ""
                     while( file[i][j] != '>'):
                         if(j >= len(file[i])-2):
@@ -60,12 +79,13 @@ def formate(s):
                         else:
                             new_line += file[i][j]
                             j +=1
-
-                    current_spaces -= 3   
+                        
                     shift = shift_amount(current_spaces)
                     printed_line = shift +"<"+new_line+">"
                     formatted_file.write(printed_line)
                     formatted_file.write("\n")
+                    
+
                     
 
                     

@@ -17,7 +17,7 @@ def convert(s):
         if(line_No == 0):
             line_No +=1
             continue
-        for i in range(len(line)-1):
+        for i in range(len(line)):
             
             if(line[i] == '<'):
                 if(line[i+1] == '/'):
@@ -37,7 +37,7 @@ def convert(s):
                     j +=1
                 
                 tagAndattributes = tagAndattributes.split()
-                for i in range(len(tagAndattributes)-1):
+                for i in range(len(tagAndattributes)):
                     if(i==0):
                         new_node.xmltag = tagAndattributes[0]
                     else:
@@ -67,7 +67,7 @@ def convert(s):
 def test (root):
     if(root.children == None):return
     print(root.xmltag)
-    print(root.text)
+    print(root.attributes)
     for child in root.children:
         test(child)
 
