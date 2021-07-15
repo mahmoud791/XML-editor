@@ -6,7 +6,7 @@ from formate import*
 
 def convert(s):
 
-    formate(s)
+    formate(s)    #the file must be idented first to be able to put in a tree
     file = open("formatted.txt", "r")
 
     line_No = 0
@@ -115,7 +115,10 @@ def write_atrr_text(root,json_file):
     if(len(root.text)):
         if(len(root.attributes)):
             json_file.write('\"'+'_'+'\":')
-        json_file.write('\"'+root.text+'\",'+'\n')
+            json_file.write('\"'+root.text+'\",'+'\n')
+        else:
+            json_file.write('\"'+root.text+'\"'+'\n')
+
 
     
 
@@ -123,9 +126,15 @@ def write_atrr_text(root,json_file):
         json_file.write('\"'+'$'+'\"'+':{\n')
     
         for i in range(len(root.attributes)):
-            if(i>=len(root.attributes)-1):json_file.write(root.attributes[i]+'\n')
+            if(i>=len(root.attributes)-1):
+                attr = root.attributes[i].split('=')
+                json_file.write('\"'+attr[0]+'\":')
+                json_file.write(attr[1]+'\n')
 
-            else:json_file.write(root.attributes[i]+',\n')
+            else:
+                attr = root.attributes[i].split('=')
+                json_file.write('\"'+attr[0]+'\":')
+                json_file.write(attr[1]+',\n')
             
         json_file.write('}\n')
 

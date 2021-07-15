@@ -9,11 +9,11 @@
       able
    </word>
             
-   <pointer refs="n05200169 n05616246">
+   <pointer refs="n05200169n05616246">
       Attribute
    </pointer>
             
-   <pointer refs="n05616246 n05200169" source="1" target="1">
+   <pointer refs="n05616246n05200169" source="1" target="1">
       Derivationally related form
    </pointer>
             
