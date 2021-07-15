@@ -31,10 +31,14 @@ def validate(s):
 
                         tag += line[j]
                         j = j+1
-                    
-                    if(mystack.pop() != tag):
-                        output.append("error in line "+str(line_No)+" the closing tag '"+str(tag)+"' doesnt match it opening")
+                    try:
+                        if(mystack.pop() != tag):
+                            output.append("error in line "+str(line_No)+" the closing tag '"+str(tag)+"' doesnt match it opening")
+                    except IndexError:
+                        output.append("error in line "+str(line_No)+" the closing tag '"+str(tag)+"' doesnt have its opening")
+
             
+                    
             if(line[i]=='>' and line[i-1]=='/'):
                 x=mystack.pop()
 
