@@ -4,7 +4,10 @@ def reduce(s):
     formate(s)
     file = open("formatted.txt", "r")
 
-    minified_file = open('Minified.txt','x')
+    try:
+        minified_file = open("Minified.txt", "x")
+    except FileExistsError:
+        return
 
     for line in file:
         for i in range(len(line)):

@@ -26,14 +26,19 @@ def prettify(outText):
     path = pathentry.get()
     outText.insert(END,' "Formatted.txt" is being created .... \n')
     formate(s=path)
-    outText.insert(END,' "Formatted.txt" is  created successfully \n')
+    outText.insert(END,' "Formatted.txt" is  created successfully \n\n')
+    file = open('Formatted.txt','r')
+    file = file.readlines()
+    for i in range(20):
+        outText.insert(END,file[i])
+
 
 def Minify(outText):
     outText.delete('1.0',END)
     path = pathentry.get()
     outText.insert(END,' "Minified.txt" is being created .... \n')
     reduce(s=path)
-    outText.insert(END,' "Minified.txt" is  created successfully \n')
+    outText.insert(END,' "Minified.txt" is  created successfully \n\n')
 
 def compress():
     path = pathentry.get()
