@@ -44,7 +44,7 @@ def Encoding(nodes,root):
 
 
 def getHuffmanCode(s):
-    Encoded_file = open('Encoded_file.txt','x')   
+    Encoded_file = open('Encoded_file.txt','x', encoding='utf-8')   
     dict1 ={}
     s = s.replace('\\', '/')
     path = str(s)
@@ -69,11 +69,30 @@ def getHuffmanCode(s):
     
 
     file = open(path, "r")
-
+    tag=''
     for line in file:
         for i in range(len(line)):
-            Encoded_file.write(dict2[line[i]])
+            tag += dict2[line[i]]
+            
+    ch=''
+    index=0
+    #print(tag)
+    while(index <= len(tag)):
+        ch = tag[index:index+8]
+        #print(ch)
+        number = int(ch,2)
+        #print(number)
+        letter = chr(number) 
+        #print(letter)
+        Encoded_file.write(letter)
+        index += 8
 
+
+
+
+
+
+#Encoded_file.write(dict2[line[i]])
     #print(codes)
 
     
