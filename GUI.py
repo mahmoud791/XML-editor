@@ -4,7 +4,7 @@ from Convert import*
 from tkinter import*
 from formate import*
 from Minify import*
-
+from Comperssion import*
 
 
 def check_consistency(outText):
@@ -16,11 +16,6 @@ def check_consistency(outText):
             outText.insert(END,output[i]+'\n')
     else:
         outText.insert(END,'this file has no errors')
-
-    
-        
-
-
 
 def Convert_to_JSON():
     path = pathentry.get()
@@ -40,7 +35,9 @@ def Minify(outText):
     reduce(s=path)
     outText.insert(END,' "Minified.txt" is  created successfully \n')
 
-
+def compress():
+    path = pathentry.get()
+    getHuffmanCode(s=path)
 
 
 window = Tk()
@@ -70,7 +67,7 @@ Convert_to_JSON.grid(row=3,column=2)
 minify_Button = Button(window, text='Minify',width=10,command=lambda : Minify(outText=outText))
 minify_Button.grid(row=4,column=2)
 
-compress_Button = Button(window, text='Compress',width=10)
+compress_Button = Button(window, text='Compress',width=10,command=compress)
 compress_Button.grid(row=5,column=2)
 
 outText = Text(master=window)
