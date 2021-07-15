@@ -70,5 +70,7 @@ def getHuffmanCode(s):
         for v in range (len(line)-1):
             tag += dict2[v]
 
-    Encoded_file = open('Encoded_file.txt','x')
-    Encoded_file.write(tag)
+    print(tag)
+
+    #Encoded_file = open('Encoded_file.txt','x')
+    #Encoded_file.write(tag)
