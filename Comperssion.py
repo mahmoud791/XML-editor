@@ -86,14 +86,27 @@ def getHuffmanCode(s):
         #print(letter)
         Encoded_file.write(letter)
         index += 8
-
-
-
-
-
-
-#Encoded_file.write(dict2[line[i]])
-    #print(codes)
-
     
-    #Encoded_file.write(tag)
+    huffman_decoding_func(tag,dict2)
+
+
+
+
+def huffman_decoding_func(data,dic):
+    if data == '':
+        return ''
+    reversed_dict = {}
+    for value, key in dic.items():
+        reversed_dict[key] = value
+    start_index = 0
+    end_index = 1
+    max_index = len(data)
+    s = ''
+
+    while start_index != max_index:
+        if data[start_index : end_index] in reversed_dict:
+            s += reversed_dict[data[start_index : end_index]]
+            start_index = end_index
+        end_index += 1
+    print(s)
+    return s
