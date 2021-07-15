@@ -1,0 +1,56 @@
+{
+"synset":{
+"$":{
+id="a00001740",
+type="a"
+}
+"lex_filenum":[
+"00",
+],
+"word":[
+"_":"able",
+"$":{
+lex_id="0"
+}
+],
+"pointer":[
+"_":"Attribute",
+"$":{
+refs="n05200169,
+n05616246"
+}
+],
+"pointer":[
+"_":"Derivationally related form",
+"$":{
+refs="n05616246,
+n05200169",
+source="1",
+target="1"
+}
+],
+"pointer":[
+"_":"Antonym",
+"$":{
+refs="a00002098",
+source="1",
+target="1"
+}
+],
+"def":[
+"(usually followed by `to') having the necessary means or skill or know-how or authority to do something",
+],
+"example":[
+"able to swim",
+],
+"example":[
+"she was able to program her computer",
+],
+"example":[
+"we were at last able to buy a car",
+],
+"example":[
+"able to get a grant for the project",
+],
+}
+}

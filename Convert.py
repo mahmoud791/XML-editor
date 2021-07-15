@@ -24,8 +24,10 @@ def convert(s):
                     current_node = current_node.parent
                     break
                 
-                
-                new_node = Node(parent=current_node,xmltag=None)
+                if(line_No == 1):
+                    new_node = Node(parent=None,xmltag=None)
+                else:
+                    new_node = Node(parent=current_node,xmltag=None)
                 current_node.children.append(new_node)
                 current_node = new_node
                 j = i+1
@@ -48,7 +50,11 @@ def convert(s):
             
 
             elif(line[i] != ' '):
-                current_node.text += line[i]
+                j=i
+                while(j < len(line)-1):
+                    current_node.text += line[j]
+                    j += 1
+                break
 
             
 
@@ -59,19 +65,69 @@ def convert(s):
             head = current_node
         line_No += 1
 
-    test(head)
+    json_file = open('json.txt','x')
+    json_file.write('{\n')
+    write_json(head,json_file=json_file)
+    json_file.write('}')
 
+    
         
 
 
-def test (root):
-    if(root.children == None):return
-    print(root.xmltag)
-    print(root.attributes)
-    for child in root.children:
-        test(child)
+def write_json (root,json_file):
+
+    json_file.write('\"'+root.xmltag+'\"'+':')
+    if(root.parent == None):
+        json_file.write('{\n')
+        write_atrr_text(root=root,json_file=json_file)
+        for child in root.children:
+            write_json(child,json_file=json_file)
+        json_file.write('}\n')
+    
+    else:
+        json_file.write('[\n')
+        json_file.write('{\n')
+        write_atrr_text(root=root,json_file=json_file)
+        if not (len(root.children)):
+            json_file.write('}\n],\n')
+            return
+
+        for child in root.children:
+            write_json(child,json_file=json_file)
+
+        
+
+    
 
 
+        
+        
+
+    
+
+    #forloop for children
+
+
+
+
+def write_atrr_text(root,json_file):
+
+    if(len(root.text)):
+        if(len(root.attributes)):
+            json_file.write('\"'+'_'+'\":')
+        json_file.write('\"'+root.text+'\",'+'\n')
+
+    
+
+    if(len(root.attributes)):
+        json_file.write('\"'+'$'+'\"'+':{\n')
+    
+        for i in range(len(root.attributes)):
+            if(i>=len(root.attributes)-1):json_file.write(root.attributes[i]+'\n')
+
+            else:json_file.write(root.attributes[i]+',\n')
+            
+        json_file.write('}\n')
 
 
 
