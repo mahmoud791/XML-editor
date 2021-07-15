@@ -1,24 +1,24 @@
 class Node:
-    def __init__(self,freq):
+    def __init__(self,count):
         self.left = None
         self.right = None
         self.parent = None
-        self.freq = freq
+        self.count = count
     def isLeft(self):
         return self.parent.left == self
 
 
-def createNodes(freqs):
-    return [Node(freq) for freq in freqs]
+def createNodes(counts):
+    return [Node(count) for count in counts]
 
 
 def HTree(nodes):
     queue = nodes[:]
     while len(queue) > 1:
-        queue.sort(key=lambda item:item.freq)
+        queue.sort(key=lambda item:item.count)
         node_left = queue.pop(0)
         node_right = queue.pop(0)
-        node_parent = Node(node_left.freq + node_right.freq)
+        node_parent = Node(node_left.count + node_right.count)
         node_parent.left = node_left
         node_parent.right = node_right
         node_left.parent = node_parent
@@ -40,21 +40,7 @@ def Encoding(nodes,root):
                 codes[i] = '1' + codes[i]
             node_tmp = node_tmp.parent
     return codes
-
-# Unzip the huffman file
-def decode_huffman(input_string,  char_store, freq_store):
-    #input_string Huffman encoding
-    #char_store character set 
-    #freq_store Character transcoding 01 sequence
-    encode = ''
-    decode = ''
-    for index in range(len(input_string)):
-        encode = encode + input_string[index]
-        for item in zip(char_store, freq_store):
-            if encode == item[1]:
-                decode = decode + item[0]
-                encode = ''
-    return decode;           
+        
 
 
 def getHuffmanCode(s):   
@@ -72,15 +58,17 @@ def getHuffmanCode(s):
                 dict1[i] += 1
             else :
                 dict1[i] = 1 
-    chars_freqs  = sorted(dict1.items(), key = lambda kv:(kv[1], kv[0]))
-    nodes = createNodes([item[1] for item in chars_freqs])
+    chars_counts  = sorted(dict1.items(), key = lambda kv:(kv[1], kv[0]))
+    nodes = createNodes([item[1] for item in chars_counts])
     root = HTree(nodes)
     codes = Encoding(nodes,root)
     dict2 = {}
-    for item in zip(chars_freqs,codes):
+    for item in zip(chars_counts,codes):
         dict2[item[0][0]] = item[1]
     tag = ''
     for line in file:
         for v in range (len(line)-1):
             tag += dict2[v]
-        return [tag,dict2]
+
+    Encoded_file = open('Encoded_file.txt','x')
+    Encoded_file.write(tag)
